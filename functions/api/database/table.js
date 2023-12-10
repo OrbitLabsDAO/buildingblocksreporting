@@ -209,6 +209,15 @@ export async function onRequestGet(context) {
         if (searchParams.get('foreignKey') != null) {
             foreignKey = searchParams.get('foreignKey');
         }
+
+        //check for an order
+        let orderBy = "";
+        let orderByField = "";
+        if (searchParams.get('orderBy') != null) {
+            orderBy = searchParams.get('orderBy');
+            orderByField = searchParams.get('orderByField');
+        }
+
         
         //get the table name
         let tableName = searchParams.get('tablename');
@@ -246,6 +255,12 @@ export async function onRequestGet(context) {
         {
             sqlWhere = sqlWhere + ` and ${foreignKey} = ${recordId}`
         }
+
+        let sqlOrderBy = "";
+        if (orderBy != "")
+        {
+            sqlOrderBy = `ORDER BY ${orderByField} ${orderBy}`
+        }
         
         //process the fields
         let tmp = fields.split(",");
@@ -253,7 +268,7 @@ export async function onRequestGet(context) {
         //console.log(tmp.length)
         let theQuery = ""
         if (tmp.length == 1) {
-            theQuery = `SELECT * from ${tableName} ${sqlWhere} `
+            theQuery = `SELECT * from ${tableName} ${sqlWhere} ${sqlOrderBy}`
             //console.log("theQuery a")
             //console.log(theQuery)
             query = context.env.DB.prepare(theQuery);
@@ -266,9 +281,9 @@ export async function onRequestGet(context) {
                     fields = fields + "," + tmp[i]
             }
 
-            theQuery = `SELECT ${fields} from ${tableName} ${sqlWhere}`
+            theQuery = `SELECT ${fields} from ${tableName} ${sqlWhere} ${sqlOrderBy}`
             //console.log("theQuery b")
-            console.log(theQuery)
+            //console.log(theQuery)
             query = context.env.DB.prepare(theQuery);
         }
 

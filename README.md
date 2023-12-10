@@ -16,9 +16,9 @@ Once you have done this simply add it as a remote
 
 ## Clone
 
-clone the BuildingBlock management portal onto your local machine.
+clone the Payme v2 onto your local machine.
 
-git clone  https://github.com/OrbitLabsDAO/buildingblocksreporting.git 
+git clone  https://github.com/OrbitLabsDAO/paymev2
 
 then run  the following 2 commands
 
@@ -26,7 +26,7 @@ then run  the following 2 commands
 
 `npm install `
 
-This will set up the BuildingBlock management portal locally on your machine.
+This will set up the Payme v2 locally on your machine.
 
 finally push it to the repo you set up earlier
 
@@ -70,12 +70,20 @@ then we have to add it to add a D1 database binding called DB and point it to th
 
 ![](https://imagedelivery.net/9dYZtR12J2uzlEZe4Joa5w/62dc6c22-bddd-402b-8144-53e491a38c00/public)
 
+Now we have to create a wrangler.toml file in the root and add the database name and the id of the database you created in the control panel
+note: pages does not use wrangler.toml so I can only assume this is because d1 is in alpha and will be removed soon, regadless the toml file will have the following
+
+[[ d1_databases ]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "databasename"
+database_id = "databaseid"
+
 The last thing we have to do is run the SQL file to create the tables
 
-wrangler d1 execute DB --local  --file=./scripts/sql/schema.sql
+sudo npx wrangler d1 execute DB --local  --file=./scripts/sql/schema.sql
 sudo wrangler d1 execute DB --file=./scripts/sql/schema.sql
 
-
+npx wrangler d1 execute DB--local --command="SELECT * FROM user"
 
 ## Create environment variables 
 
@@ -184,6 +192,7 @@ SIGNUPEMAILTEMPLATEID=
 the template ID for signup
 
 ## Run it
+
 
 run the command
 

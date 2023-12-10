@@ -10,6 +10,7 @@
      //process the one time url from the server
      let oneTimeUrlDone = (res) => {
          res = JSON.parse(res);
+        
          //get the file
          const fileInput = document.getElementById('file-input');
          const file = fileInput.files[0];

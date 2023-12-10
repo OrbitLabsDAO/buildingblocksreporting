@@ -2,8 +2,8 @@
 layout: layout.njk
 permalink: /property/costs/
 crumb : /property/cost/
-fields : ["id","name","amountInternational","paidBy","datePaid","createdAt"]
-headerFields : ["id","Name","Amount","Paid By","Date Paid","Created At"]
+fields : ["id","name","amountInternational","paidBy","datePaid"]
+headerFields : ["id","Name","Amount","Paid By","Date Paid"]
 title : costs
 ---
 <script>
@@ -12,7 +12,7 @@ title : costs
     let formatFields = [{"field":"amountInternational","function":"formatCurencyUSD(tmpValue)"}]
     let theFields = "{% for field in fields %}{% if loop.last %}{{ field }}{% else %}{{ field }},{% endif %}{% endfor %}";
     //main settings array to handle all the variations of rendering.
-    const theSettings = {"checkAdmin":0,"tableSchema":0,"allowOnlyOne":0,"editButton":1,"deleteButton":1,"customButton":"","customSelect":"","localLookUp":"","localReplace":"","table":"rental_cost","formatFields":formatFields,"fields":theFields,"crumb":"{{ crumb }}","foreignKey":"propertyId","lookUps":"","title":title}
+    const theSettings = {"checkAdmin":0,"tableSchema":0,"allowOnlyOne":0,"editButton":1,"deleteButton":1,"customButton":"","customSelect":"","localLookUp":"","localReplace":"","table":"rental_cost","formatFields":formatFields,"fields":theFields,"crumb":"{{ crumb }}","foreignKey":"propertyId","lookUps":"","title":title,"orderBy":"DESC","orderByField":"datePaid","orderByTableId":4}
 </script>
 {% set theJs %}
     {% include 'admin/table-index.js' %}

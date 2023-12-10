@@ -2,23 +2,51 @@
 GENERAL 
 
 
- ✔ need a way to set the correct id for cypress testing think we can just hard code a property Id in each of index / edit / new js files, we could also put it in the api side and pass up a flag. @done (23-01-25 19:30)
- ✔ add a select item in proprety amenity does not add it (assume this is the case for all submits) @done (23-01-25 00:09)
- ✔ when you add a record it shoud jump back to the top. @done (23-01-25 17:39)
- ✔ add the property to the breadcrumb @done (23-01-25 18:02)
- ✔  property image url @done (23-01-25 18:02)
- ☐ for some reason the rendering breaks on cypress on the index js.  I think it may be an aysnc issue. I can hack around it for now but it has to be looked at some point to give us more accurate tests. 
+
  ☐ token edit lookups
  ☐ look up in index break looks up in new as it gets record id from the currentdata item which is not set in cypress as it does not exist. We have to set in the JS then it will be golden.  Not an issue if we dont do unit testings, but we doing unit testing so thems the breaks. 
- ☐ 17-create-owners.cy.js 
- ☐ 18-edit-owners.cy.js 
- ☐ 20_create_costs.cy.js     
- ☐ 25_crowdfund.cy.js 
- ☐ forgot password
+ ☐ if you click on an owner product without a token it shows the seller from record 1 in owners and dist
+ ☐ create an upstream script to remove non core files
+ ☐ add a view button to each index
+ ☐ move the reusable crypto functions to app.js
+ ☐ add a date selector for date fields
+ ☐ in property token new decide if we want to use international or local cost (both have merits)     document.getElementById('inp-totalSupply').value = dataItem.internationalCost;
+ ☐ dist new make it switch connect on meta mask if you are on the wrong one.
+ ☐ rental payment should auto fill autotmaic amount
+ ☐ set the exhange rates
+ ☐ update lookups to have ability to only show records with the correct property id
+ ☐ if there is no token dont allow owners to be added.
+ ☐ add a hide create new button function (this is in adition to allowOnlyOne)
+
+ http://localhost:8789/properties/
+
+ ☐ check the state
+ ☐ remove created at
+
+ http://localhost:8789/property/costs/ payments
+
+ ✔ order by date paid @done (23-12-11 00:50)
+ ☐ add recurring costs
+ ☐ set exchange rates auto remove them 
+ ☐ set the correct property id from dropdown (why isnt this set automatically)
+ ☐ multi add mode
+ ☐ fix paid by
+ ☐ add the back in breadcrumbs
+ 
+ http://localhost:8789/property/cost/new/
+
+ ☐ check dropdowns 
+
+ http://localhost:8789/property/cost/edit/?id=1
+
+ ☐  hide the rental ids
+
+
 
 CYPRESS TESTS
 
  ☐ create account
+ ☐ for some reason the rendering breaks on cypress on the index js.  I think it may be an aysnc issue. I can hack around it for now but it has to be looked at some point to give us more accurate tests. 
 
 
 GENERAL
@@ -45,18 +73,7 @@ PROPERTY
 
 GENERAL 
 
- ☐ if you click on an owner product without a token it shows the seller from record 1 in owners and dist
- ☐ create an upstream script to remove non core files
- ☐ add a view button to each index
- ☐ move the reusable crypto functions to app.js
- ☐ add a date selector for date fields
- ☐ in property token new decide if we want to use international or local cost (both have merits)     document.getElementById('inp-totalSupply').value = dataItem.internationalCost;
- ☐ dist new make it switch connect on meta mask if you are on the wrong one.
- ☐ rental payment should auto fill autotmaic amount
- ☐ set the exhange rates
- ☐ update lookups to have ability to only show records with the correct property id
- ☐ if there is no token dont allow owners to be added.
- ☐ add a hide create new button function (this is in adition to allowOnlyOne)
+
  
 
 

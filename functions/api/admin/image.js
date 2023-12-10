@@ -28,6 +28,7 @@ export async function onRequestGet(context) {
     if (theToken == "")
         return new Response(JSON.stringify({ error: "Token required" }), { status: 400 });
 
+
     if (theToken.payload.isAdmin == 1) {
 
         //call the cloudflare API for a one time URL

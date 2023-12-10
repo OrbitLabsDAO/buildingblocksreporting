@@ -91,11 +91,12 @@ whenDocumentReady(isReady = () => {
         }
         //get the datatable
         table = $('#dataTable').DataTable();
-
+        //console.log(res.data)
         //process the results
         for (var i = 0; i < res.data.length; ++i) {
             //set the data 
             let theData = res.data[i];
+            console.log(theData)
             //build the buttons
             deleteButton = "";
             editButton = "";
@@ -226,6 +227,9 @@ whenDocumentReady(isReady = () => {
             table.column(table.columns().nodes().length - 1).visible(false)
             table.columns.adjust();
         }
+        //check if we want to order the table
+        if (theSettings.orderByTableId != 0)
+            table.order([theSettings.orderByTableId, 'desc']).draw();
     }
 
 
@@ -251,6 +255,14 @@ whenDocumentReady(isReady = () => {
             tmpLookUpUrl = `lookUps=${lookUps}`;
         }
 
+        //check if orderBy has been set if not set it to blank as we do not want to order it.
+        if ((theSettings.orderBy == undefined) || (theSettings.orderBy == "")) 
+        {
+            theSettings.orderBy="";
+            theSettings.orderByField="";
+            theSettings.orderByTableId=0;
+        }
+
         //build the URL for the main table rendering call. 
         //note : this changes based on where you are level 1 index etc.
         let tmpUrl = "database/table?"
@@ -270,8 +282,9 @@ whenDocumentReady(isReady = () => {
         if (theSettings.foreignKey == "")
             tmpUrl = tmpUrl + `recordId=${window.localStorage.currentDataItemId}`
         else {
-            tmpUrl = tmpUrl + `foreignKey=${theSettings.foreignKey}&recordId=${window.localStorage.currentDataItemId}`
+            tmpUrl = tmpUrl + `foreignKey=${theSettings.foreignKey}&recordId=${window.localStorage.currentDataItemId}&orderBy=${theSettings.orderBy}&orderByField=${theSettings.orderByField}`
         }
+
 
         const tmpXhrCalls = { "url": `${tmpUrl}`, "doneFunction": "getTableDone", "xhrType": 1 }
         //add it to the url array
